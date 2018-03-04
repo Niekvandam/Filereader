@@ -2,13 +2,13 @@ package main;
 
 import java.io.File;
 
-import testFileReader.FileReader;
+import fileReader.InitialFileReader;
 
 public class Main {
 
 	public static void main(String[] args) {
 	
-		FileReader t = new FileReader();
+		InitialFileReader t = new InitialFileReader();
 		
 		
 		File f = t.SelectFile();
