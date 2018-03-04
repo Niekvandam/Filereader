@@ -11,7 +11,7 @@ public class TestFileReader {
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 	    fc.setAcceptAllFileFilterUsed(false);
 		if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			return fc.getCurrentDirectory();
+			return fc.getCurrentDirectory().toString();
 		}
 	return "test";
 	}
