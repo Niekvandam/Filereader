@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-public class TestFileReader {
+public class FileReader {
 	JFileChooser fc = new JFileChooser();
 
 	public File SelectFolder() {
