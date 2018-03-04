@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class TestFileReader {
 
-	boolean fileMode = true;
+
 	BufferedReader bufferedReader = null;
 	FileReader fileReader = null;
 
