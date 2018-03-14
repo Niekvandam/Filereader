@@ -1,13 +1,10 @@
-package fileReader;
+package testFileReader;
 
-import java.io.BufferedReader;
 import java.io.File;
 
 import javax.swing.JFileChooser;
 
-public class InitialFileReader {
-	InitialFileReader fr = null;
-	BufferedReader br = null;
+public class FileReader {
 	JFileChooser fc = new JFileChooser();
 
 	public File SelectFolder() {
@@ -28,15 +25,5 @@ public class InitialFileReader {
 			return fc.getSelectedFile();
 		}
 		return null;
-	}
-	
-	public void ReadDirectory() {
-		File dir = SelectFolder();
-		File[] directoryListing = dir.listFiles();
-		if(directoryListing != null) {
-			for(File child: directoryListing) {
-				System.out.println(child.getAbsolutePath());
-			}
-		}
 	}
 }
