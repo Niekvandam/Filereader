@@ -1,7 +1,5 @@
 package main;
 
-import java.io.File;
-
 import fileReader.InitialFileReader;
 
 public class Main {
@@ -11,9 +9,7 @@ public class Main {
 		InitialFileReader t = new InitialFileReader();
 		
 		
-		File f = t.SelectFile();
-
-		System.out.println(f.getAbsolutePath());
+		t.ReadDirectory();
 	}
 
 }
