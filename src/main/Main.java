@@ -9,7 +9,7 @@ public class Main {
 		InitialFileReader t = new InitialFileReader();
 		
 		
-		t.ReadDirectory();
+		t.CopyFile();
 	}
 
 }
