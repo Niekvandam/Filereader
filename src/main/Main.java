@@ -1,19 +1,27 @@
 package main;
 
-import java.io.File;
+import java.awt.BorderLayout;
 
-import fileReader.InitialFileReader;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class Main {
 
 	public static void main(String[] args) {
-	
-		InitialFileReader t = new InitialFileReader();
-		
-		
-		File f = t.SelectFile();
+		JFrame frame = new JFrame("FrameDemo");
 
-		System.out.println(f.getAbsolutePath());
+	
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JLabel label = new JLabel("wat fijn", SwingConstants.CENTER);
+		frame.getContentPane().add(label, BorderLayout.CENTER);
+
+		frame.pack();
+
+		frame.setVisible(true);
 	}
 
 }

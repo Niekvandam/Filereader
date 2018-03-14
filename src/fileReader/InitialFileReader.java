@@ -2,8 +2,11 @@ package fileReader;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.TreeSet;
 
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class InitialFileReader {
 	InitialFileReader fr = null;
@@ -29,14 +32,28 @@ public class InitialFileReader {
 		}
 		return null;
 	}
-	
-	public void ReadDirectory() {
+
+	public TreeSet<File> ReadDirectory() {
+		TreeSet<File> initialFiles = new TreeSet<File>();
 		File dir = SelectFolder();
 		File[] directoryListing = dir.listFiles();
-		if(directoryListing != null) {
-			for(File child: directoryListing) {
-				System.out.println(child.getAbsolutePath());
+		if (directoryListing != null) {
+			for (File child : directoryListing) {
+				initialFiles.add(child);
 			}
 		}
+		return initialFiles;
+	}
+
+	public JTable CreateTableFromData() {
+		 TreeSet<File> entriesfortable = ReadDirectory();
+
+		    // It creates and displays the table
+		    JTable table = new JTable(buildTableModel(entriesfortable));
+
+		    // Closes the Connection
+
+		    JOptionPane.showMessageDialog(null, new JScrollPane(table));
+		return table;
 	}
 }
