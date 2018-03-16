@@ -1,5 +1,6 @@
 package fileReader;
 
+import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,10 +11,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.TreeSet;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -21,7 +26,7 @@ import javax.swing.JFileChooser;
  *
  */
 public class InitialFileReader {
-
+	JFrame jframe = new JFrame();
 	InitialFileReader fr = null;
 	BufferedReader br = null;
 	JFileChooser fc = new JFileChooser();
@@ -48,7 +53,10 @@ public class InitialFileReader {
 		 * checks if the ok button has been pressed
 		 */
 		if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-			return fc.getSelectedFile();
+			if (fc.getCurrentDirectory().isDirectory()) {
+
+				return fc.getSelectedFile();
+			}
 		}
 		return null;
 	}
@@ -59,20 +67,19 @@ public class InitialFileReader {
 	 */
 	public TreeSet<File> ReadDirectory() {
 		/*
-		 * creates a new TreeSet to store the result in
-		 * calls {@link #SelectFolder()} and loops through all the children folders of
-		 * the one selected.
+		 * creates a new TreeSet to store the result in calls {@link #SelectFolder()}
+		 * and loops through all the children folders of the one selected.
 		 */
-		TreeSet<File> listedFiles = new TreeSet<File>();
+		TreeSet<File> childFiles = new TreeSet<File>();
+		InitializeFrame();
 		File dir = SelectFileOrFolder();
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			for (File child : directoryListing) {
-				System.out.println(child.getAbsolutePath());
 				child.getAbsolutePath();
-				listedFiles.add(child);
-				return listedFiles;
+				childFiles.add(child);
 			}
+			return childFiles;
 		}
 		return null;
 	}
@@ -82,8 +89,8 @@ public class InitialFileReader {
 		try (Writer writer = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(f + "\\" + NameOfFile + ".txt"), "utf-8"))) {
 			Scanner sc = new Scanner(System.in);
-			String anne = sc.nextLine();
-			writer.write(anne);
+			String scannerinput = sc.nextLine();
+			writer.write(scannerinput);
 			sc.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -107,6 +114,27 @@ public class InitialFileReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void createFrameWithTable() {
+		TreeSet<File> files = ReadDirectory();
+		String[] columnNames = { "Name", "File Path", "Last Modified" };
+		DefaultTableModel fileTableModel = new DefaultTableModel(columnNames, 0);
+		for (File child : files) {
+			Object[] childFile = { child.getName(), child.getAbsolutePath(), new Date(child.lastModified()) };
+			fileTableModel.addRow(childFile);
+		}
+		JTable table = new JTable(fileTableModel);
+		table.setModel(fileTableModel);
+		table.setSize(600, 600);
+		jframe.add(table, BorderLayout.CENTER);
+		jframe.setVisible(true);
+	}
+
+	public void InitializeFrame() {
+		jframe = new JFrame();
+		jframe.setSize(600, 600);
+		jframe.setVisible(true);
 	}
 
 }
