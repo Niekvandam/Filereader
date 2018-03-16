@@ -1,15 +1,16 @@
 package main;
 
-import fileReader.InitialFileReader;
+import javax.swing.JFileChooser;
 
 public class Main {
 
 	public static void main(String[] args) {
 	
-		InitialFileReader t = new InitialFileReader();
+		JFileChooser jf = new JFileChooser();
 		
-		
-		t.CopyFile();
-	}
+		jf.showOpenDialog(null);
 
+	
+
+}
 }

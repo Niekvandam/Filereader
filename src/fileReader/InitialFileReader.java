@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 import javax.swing.JFileChooser;
@@ -58,6 +59,7 @@ public class InitialFileReader {
 	 */
 	public TreeSet<File> ReadDirectory() {
 		/*
+		 * creates a new TreeSet to store the result in
 		 * calls {@link #SelectFolder()} and loops through all the children folders of
 		 * the one selected.
 		 */
@@ -66,6 +68,7 @@ public class InitialFileReader {
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			for (File child : directoryListing) {
+				System.out.println(child.getAbsolutePath());
 				child.getAbsolutePath();
 				listedFiles.add(child);
 				return listedFiles;
@@ -78,7 +81,10 @@ public class InitialFileReader {
 		File f = SelectFileOrFolder();
 		try (Writer writer = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(f + "\\" + NameOfFile + ".txt"), "utf-8"))) {
-			writer.write("testtesteste");
+			Scanner sc = new Scanner(System.in);
+			String anne = sc.nextLine();
+			writer.write(anne);
+			sc.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
