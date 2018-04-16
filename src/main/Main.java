@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JFileChooser;
-
 import fileReader.InitialFileReader;
 
 public class Main {

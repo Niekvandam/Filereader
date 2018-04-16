@@ -71,7 +71,6 @@ public class InitialFileReader {
 		 * and loops through all the children folders of the one selected.
 		 */
 		TreeSet<File> childFiles = new TreeSet<File>();
-		InitializeFrame();
 		File dir = SelectFileOrFolder();
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
@@ -129,6 +128,7 @@ public class InitialFileReader {
 		table.setSize(600, 600);
 		jframe.add(table, BorderLayout.CENTER);
 		jframe.setVisible(true);
+		jframe.repaint();
 	}
 
 	public void InitializeFrame() {
